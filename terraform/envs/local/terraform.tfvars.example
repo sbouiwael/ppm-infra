@@ -1,0 +1,19 @@
+# Copy to terraform.tfvars (gitignored) and adjust to taste.
+# Real secrets stay LOCAL ONLY — never committed.
+
+# kubeconfig & context (defaults shown)
+# kube_config_path = "~/.kube/config"
+# kube_context     = "minikube"
+
+# GitOps source of truth — point this at a fork/branch when iterating
+# gitops_repo_url        = "https://github.com/sbouiwael/ppm-gitops.git"
+# gitops_target_revision = "main"
+
+# Toggle in-cluster bits
+# install_ingress_nginx = true
+# install_mysql_local   = true
+
+# Pin chart versions (defaults are sane)
+# argocd_chart_version        = "7.7.10"
+# ingress_nginx_chart_version = "4.11.3"
+# mysql_chart_version         = "11.1.19"
