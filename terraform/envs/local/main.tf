@@ -66,6 +66,16 @@ module "ppm_secrets_local" {
   depends_on = [module.namespaces]
 }
 
+# Observability stack (platform layer). Independent of the GitOps apps —
+# provisions its own `monitoring` namespace with Prometheus/Grafana/Loki.
+module "monitoring" {
+  count  = var.install_monitoring ? 1 : 0
+  source = "../../modules/monitoring"
+
+  namespace              = "monitoring"
+  grafana_admin_password = var.grafana_admin_password
+}
+
 # Final step: hand control over to Argo CD by applying a root Application
 # scoped to apps/environments/local in the GitOps repo.
 module "app_of_apps" {

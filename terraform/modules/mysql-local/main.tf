@@ -38,6 +38,11 @@ resource "helm_release" "mysql" {
   values = [
     yamlencode({
       architecture = "standalone"
+      image = {
+        # registry stays docker.io; repository points at the legacy Bitnami repo.
+        # See variables.tf for why (Bitnami 2025 image migration).
+        repository = var.image_repository
+      }
       auth = {
         rootPassword   = random_password.root.result
         database       = var.database

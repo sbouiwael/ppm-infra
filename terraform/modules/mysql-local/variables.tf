@@ -16,6 +16,18 @@ variable "chart_version" {
   default     = "11.1.19"
 }
 
+# Bitnami moved its free/legacy container images out of docker.io/bitnami/* in
+# 2025 (the versioned tags this chart references were deleted from docker.io/bitnami
+# and republished under docker.io/bitnamilegacy/*). The chart default
+# (image.repository = bitnami/mysql) therefore yields ImagePullBackOff. Point at
+# the legacy repo so the pinned tag for chart_version stays pullable. Override if
+# you mirror the image elsewhere.
+variable "image_repository" {
+  description = "Image repository for MySQL (registry stays docker.io). Defaults to the Bitnami legacy repo so the chart's pinned tag remains pullable."
+  type        = string
+  default     = "bitnamilegacy/mysql"
+}
+
 variable "database" {
   description = "Database name to create"
   type        = string

@@ -56,3 +56,16 @@ variable "install_mysql_local" {
   type        = bool
   default     = true
 }
+
+variable "install_monitoring" {
+  description = "Install the observability stack (Prometheus + Grafana + Alertmanager + Loki + Promtail)"
+  type        = bool
+  default     = true
+}
+
+variable "grafana_admin_password" {
+  description = "Grafana admin password (user: admin)"
+  type        = string
+  default     = "admin"
+  sensitive   = true
+}
